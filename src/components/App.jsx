@@ -9,12 +9,14 @@ export const App = () => {
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/movies/:movieId/*">Movies</NavLink>
+
         </nav>
       </header>
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/:movieId/*" element={<Movies />} />
+
         </Routes>
       </main>
     </div>

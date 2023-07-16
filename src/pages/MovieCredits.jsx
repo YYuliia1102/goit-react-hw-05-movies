@@ -31,10 +31,10 @@ const Movie = () => {
             <p>Overview: {movie.overview}</p>
             <p>Genres: {movie.genres.map((genre) => genre.name).join(', ')}</p>
             <div>
-                <Link to="cast">Cast</Link>
+                <Link to={`/movies/${movieId}/cast`}>Cast</Link>
             </div>
             <Routes>
-                <Route path="cast" element={<Cast />} />
+                <Route path="/movies/:movieId/cast" element={<Cast movieId={movieId} />} />
             </Routes>
         </div>
     );

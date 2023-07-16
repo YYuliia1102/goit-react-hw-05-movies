@@ -26,8 +26,6 @@ export const fetchMovieDetails = async (movieId) => {
             overview: data.overview,
             genres: data.genres,
             poster_path: data.poster_path,
-            cast: data.cast,
-            // reviews: data.reviews,
         };
 
         return movieDetails;
@@ -38,22 +36,18 @@ export const fetchMovieDetails = async (movieId) => {
     }
 };
 
-export const fetchMovieCast = async (movieId) => {
+export const getMovieCredits = async (movieId) => {
     try {
         const apiKey = '7bd54d4ecca90d61812ee42cdc93d740';
         const response = await fetch(
             `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
         );
         const data = await response.json();
-        const cast = data.cast.map((cast) => ({
-            id: cast.id,
-            name: cast.name,
-            profile_path: cast.profile_path ? `https://image.tmdb.org/t/p/w500${cast.profile_path}` : null,
-        }));
-        return cast;
+        return data.cast;
     } catch (error) {
-        console.log('Error fetching movie cast:', error);
+        console.log('Error fetching movie credits:', error);
         return [];
     }
 };
+
 

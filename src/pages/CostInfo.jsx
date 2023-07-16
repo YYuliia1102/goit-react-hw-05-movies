@@ -1,29 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieCast } from 'services/api';
+import { getMovieCredits } from 'services/api';
 
 const Cast = () => {
     const { movieId } = useParams();
-    const [cast, setCast] = useState([]);
+    const [credits, setCredits] = useState([]);
 
     useEffect(() => {
-        const fetchCastData = async () => {
-            const castData = await fetchMovieCast(movieId);
-            setCast(castData);
+        const fetchMovieCredits = async () => {
+            if (!movieId) return;
+
+            const creditsData = await getMovieCredits(movieId);
+            setCredits(creditsData);
         };
 
-        if (movieId) {
-            fetchCastData();
-        }
+        fetchMovieCredits();
     }, [movieId]);
+
+    const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
     return (
         <div>
-            <h2>Cast</h2>
+            <h2>Movie Cast</h2>
             <ul>
-                {cast.map(actor => (
+                {credits.map((actor) => (
                     <li key={actor.id}>
-                        {/* <NavLink to={`/movies/${movieId}/cast/${actor.id}`}>{actor.name}</NavLink> */}
+                        <img
+                            src={
+                                actor.profile_path
+                                    ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                                    : defaultImg
+                            }
+                            alt={actor.name}
+                            width="100"
+                        />
+                        <p>{actor.name}</p>
                     </li>
                 ))}
             </ul>
