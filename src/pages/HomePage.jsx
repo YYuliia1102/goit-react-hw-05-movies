@@ -1,45 +1,31 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { fetchTrendingMovies } from 'services/api';
 
-import React, { useEffect, useState } from 'react';
+const HomePage = () => {
+    const [movies, setMovies] = useState([]);
 
-import { fetchPostDetails, fetchPosts } from 'services/api';
-
-export const HomePage = () => {
     useEffect(() => {
-        const fetchPostsData = async () => {
-            try {
-                setIsLoading(true);
-                const movie = await fetchPosts();
-                setPosts(movie);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setIsLoading(false);
-            }
+        const getTrendingMovies = async () => {
+            const data = await fetchTrendingMovies();
+            setMovies(data);
         };
 
-        fetchPostsData();
+        getTrendingMovies();
     }, []);
 
     return (
         <div>
-            <h1>HomePage</h1>
-            {error !== null && (
-                <p className="c-error">
-                    Oops, some error occured. Please, try again later. Error: {error}
-                </p>
-            )}
-            {posts.length > 0 &&
-                posts.map(movie => {
-                    return (
-                        <Link className="post" key={movie.id} to={`/posts/${movie.id}`}>
-                            <strong>Id: {movie.id}</strong>
-                            <h4>{movie.title}</h4>
-                            <p>{movie.body}</p>
-                        </Link>
-                    );
-                })}
+            <h1>Trending Movies</h1>
+            <ul>
+                {movies.map((movie) => (
+                    <li key={movie.id}>
+                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
-}
+};
 
 export default HomePage;
