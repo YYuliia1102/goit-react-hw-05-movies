@@ -29,7 +29,6 @@ export const fetchMovieDetails = async (movieId) => {
         };
 
         return movieDetails;
-
     } catch (error) {
         console.log('Error fetching movie details:', error);
         return null;
@@ -38,7 +37,6 @@ export const fetchMovieDetails = async (movieId) => {
 
 export const getMovieCredits = async (movieId) => {
     try {
-        const apiKey = '7bd54d4ecca90d61812ee42cdc93d740';
         const response = await fetch(
             `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
         );
@@ -50,4 +48,15 @@ export const getMovieCredits = async (movieId) => {
     }
 };
 
-
+export const getMovieReviews = async (movieId) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}`
+        );
+        const data = await response.json();
+        return data.results;
+    } catch (error) {
+        console.log('Error fetching movie reviews:', error);
+        return [];
+    }
+};

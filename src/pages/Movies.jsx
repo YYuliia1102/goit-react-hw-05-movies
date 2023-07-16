@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, Route, Routes } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 import Cast from './CostInfo';
+import Reviews from './Reviews';
 
 const Movie = () => {
     const { movieId } = useParams();
@@ -32,9 +33,11 @@ const Movie = () => {
             <p>Genres: {movie.genres.map((genre) => genre.name).join(', ')}</p>
             <div>
                 <Link to="cast">Cast</Link>
+                <Link to="reviews">Reviews</Link>
             </div>
             <Routes>
                 <Route path="cast" element={<Cast />} />
+                <Route path="reviews" element={<Reviews />} />
             </Routes>
         </div>
     );
