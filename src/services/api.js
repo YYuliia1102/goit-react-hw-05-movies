@@ -1,62 +1,44 @@
 const apiKey = '7bd54d4ecca90d61812ee42cdc93d740';
 
-export const fetchTrendingMovies = async () => {
+const fetchData = async (endpoint) => {
     try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`
-        );
+        const response = await fetch(endpoint);
         const data = await response.json();
-        return data.results;
+        return data;
     } catch (error) {
         console.log('Error fetching data:', error);
-        return [];
+        return null;
     }
 };
 
+export const fetchTrendingMovies = async () => {
+    const endpoint = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
+    return fetchData(endpoint).then((data) => data?.results || []);
+};
+
 export const fetchMovieDetails = async (movieId) => {
-    try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
-        );
-        const data = await response.json();
-        const movieDetails = {
+    const endpoint = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
+    const data = await fetchData(endpoint);
+    return data
+        ? {
             title: data.title,
             release_date: data.release_date,
             vote_average: data.vote_average,
             overview: data.overview,
             genres: data.genres,
             poster_path: data.poster_path,
-        };
-
-        return movieDetails;
-    } catch (error) {
-        console.log('Error fetching movie details:', error);
-        return null;
-    }
+        }
+        : null;
 };
 
 export const getMovieCredits = async (movieId) => {
-    try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
-        );
-        const data = await response.json();
-        return data.cast;
-    } catch (error) {
-        console.log('Error fetching movie credits:', error);
-        return [];
-    }
+    const endpoint = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
+    const data = await fetchData(endpoint);
+    return data?.cast || [];
 };
 
 export const getMovieReviews = async (movieId) => {
-    try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}`
-        );
-        const data = await response.json();
-        return data.results;
-    } catch (error) {
-        console.log('Error fetching movie reviews:', error);
-        return [];
-    }
+    const endpoint = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}`;
+    const data = await fetchData(endpoint);
+    return data?.results || [];
 };
