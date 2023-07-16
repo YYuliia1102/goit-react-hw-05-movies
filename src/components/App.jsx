@@ -1,16 +1,23 @@
+import { NavLink, Route, Routes } from 'react-router-dom';
+import { HomePage } from 'pages/HomePage';
+
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <header>
+        <nav>
+          <NavLink to="/">Home</NavLink>
+          {/* <NavLink to="/search">Search</NavLink> */}
+        </nav>
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/search" element={<SearchPage />} /> */}
+          {/* <Route path="/posts/:postId/*" element={<PostDetails />} /> */}
+        </Routes>
+      </main>
     </div>
   );
 };
