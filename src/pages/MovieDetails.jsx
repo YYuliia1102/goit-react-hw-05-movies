@@ -1,10 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 import Cast from './CostInfo';
 import Reviews from './Reviews';
 
-const MovieDetails = ({ movieId }) => {
+const MovieDetails = () => {
+    const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
