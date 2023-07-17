@@ -8,6 +8,8 @@ import Reviews from './Reviews';
 const MovieDetails = () => {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
+    const location = useLocation();
+    const backLinkHref = useRef(location.state?.from ?? '/');
 
     useEffect(() => {
         const getMovieDetails = async () => {
@@ -21,11 +23,12 @@ const MovieDetails = () => {
     }, [movieId]);
 
     if (!movie) {
-        return <div>Loading...</div>;
+        return;
     }
 
     return (
         <div>
+            <Link to={backLinkHref} >Go back</Link>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
             <h1>{movie.title}</h1>
             <p>Release Date: {movie.release_date}</p>

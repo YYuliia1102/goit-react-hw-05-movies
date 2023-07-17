@@ -20,12 +20,21 @@ const HomePage = () => {
             <ul>
                 {movies.map((movie) => (
                     <li key={movie.id}>
+                        <Link to={`/movies/${movie.id}`}>
+                            <img
+                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                alt={movie.title}
+                                width={100}
+                            />
+                        </Link>
                         <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
                     </li>
                 ))}
             </ul>
         </div>
     );
+
+
 };
 
 export default HomePage;
