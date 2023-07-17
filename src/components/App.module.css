@@ -1,44 +1,45 @@
 /* App.module.css */
 
-.app {
-  background-color: #404040; /* Графітовий фон */
-  width: 100%;
-  max-width: 1158px; /* Максимальна ширина контейнера */
+.container {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Золотава тінь */
   margin: 0 auto;
   padding: 20px;
-  box-sizing: border-box;
+  max-width: 1158px; /* Максимальна ширина контейнера */
+  background-color: #404040;
+}
+
+.header {
+  border: 1px solid gold;
+  background-color: #404040; /* Графітовий фон */
+  padding: 20px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: gold;
+  margin-right: 10px;
+}
+
+.main {
+  padding: 20px;
 }
 
 @media (max-width: 1158px) {
-  .app {
+  .container {
     padding: 10px;
   }
 }
 
 @media (max-width: 768px) {
-  .app {
-    padding: 5px;
+  .container {
+    border-width: 1px;
+    padding: 10px;
   }
 }
 
 @media (max-width: 428px) {
-  .app {
-    padding: 2px;
+  .container {
+    border-width: 1px;
+    padding: 5px;
   }
-}
-
-.header {
-  background-color: #404040;
-  padding: 20px;
-  border: 1px solid gold;
-}
-
-.navLink {
-  color: gold;
-  text-decoration: none;
-  margin-right: 20px;
-}
-
-.activeNavLink {
-  color: white;
 }
