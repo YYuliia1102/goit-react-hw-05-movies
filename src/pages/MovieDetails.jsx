@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link, Route, Routes, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 import Cast from './CostInfo';
@@ -58,6 +59,10 @@ const MovieDetails = () => {
             </Routes>
         </div>
     );
+};
+
+MovieDetails.propTypes = {
+    movieId: PropTypes.string,
 };
 
 export default MovieDetails;

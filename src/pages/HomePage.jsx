@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from 'services/api';
 import styles from './HomePage.module.css';
@@ -34,8 +35,16 @@ const HomePage = () => {
             </div>
         </div>
     );
+};
 
-
+HomePage.propTypes = {
+    movies: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            poster_path: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+        })
+    ),
 };
 
 export default HomePage;

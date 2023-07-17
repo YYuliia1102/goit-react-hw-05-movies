@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import { useSearchParams } from 'react-router-dom';
@@ -68,6 +69,10 @@ const Movies = () => {
             <MovieDetails movieId={movieId} />
         </div>
     );
+};
+
+Movies.propTypes = {
+    movieId: PropTypes.string,
 };
 
 export default Movies;
