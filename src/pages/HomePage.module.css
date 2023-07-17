@@ -1,0 +1,32 @@
+/* HomePage.module.css */
+
+.heading {
+  color: gold;
+}
+
+.movieGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.movieCard {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.movieLink {
+  text-decoration: none;
+  color: gold;
+  display: block;
+  text-align: center;
+}
+
+.movieImage {
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Золотава тінь на чорному фоні */
+}
+
+.movieTitle {
+  margin-top: 10px;
+}

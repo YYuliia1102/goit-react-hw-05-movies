@@ -3,14 +3,14 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from '../services/api.js';
+import styles from './Movies.module.css';
 
 const Movies = () => {
     const { movieId } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
-    const location = useLocation;
+    const location = useLocation();
     const searchMovie = searchParams.get('query');
     const [movies, setMovies] = useState([]);
-
 
     useEffect(() => {
         const getMovies = async () => {
@@ -32,33 +32,35 @@ const Movies = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className={styles.container}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <input
                     type="text"
                     name="search"
                     placeholder="Search by movies"
                     required
                     minLength={2}
+                    className={styles.searchInput}
                 />
-                <button type="submit">Search</button>
+                <button type="submit" className={styles.searchButton}>Search</button>
             </form>
             {searchMovie ? (
                 movies.length > 0 ? (
-                    <ul>
+                    <div className={styles.movieGrid}>
                         {movies.map((movie) => (
-                            <li key={movie.id}>
-                                <Link state={{ from: location }} to={`/movies/${movie.id}`}>
+                            <div key={movie.id} className={styles.movieCard}>
+                                <Link state={{ from: location }} to={`/movies/${movie.id}`} className={styles.movieLink}>
                                     <img
                                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                         alt={movie.title}
-                                        width={100}
+                                        width={200}
+                                        className={styles.movieImage}
                                     />
-                                    {movie.title}
+                                    <h2 className={styles.movieTitle}>{movie.title}</h2>
                                 </Link>
-                            </li>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 ) : (
                     <p>No movies found</p>
                 )

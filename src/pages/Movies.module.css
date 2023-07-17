@@ -1,0 +1,61 @@
+/* Movies.module.css */
+
+.container {
+  background-color: #404040; /* Графітовий фон */
+  color: #f1f1f1; /* Світлий колір тексту */
+  padding: 20px;
+}
+
+.searchInput {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid gold; /* Тонкий золотий бордер */
+}
+
+.searchButton {
+  background-color: gold;
+  color: #404040;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+.movieList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.movieItem {
+  margin-bottom: 10px;
+}
+
+.movieGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.movieCard {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.movieLink {
+  text-decoration: none;
+  color: gold;
+  display: block;
+  text-align: center;
+}
+
+.movieImage {
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Золотава тінь на чорному фоні */
+}
+
+.movieTitle {
+  margin-top: 10px;
+}

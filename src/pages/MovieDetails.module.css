@@ -1,0 +1,51 @@
+/* MovieDetails.module.css */
+
+.container {
+  background-color: #404040; /* Графітовий фон */
+  color: #f1f1f1; /* Світлий колір тексту */
+  padding: 20px;
+}
+
+.goBackLink {
+  color: gold;
+  text-decoration: none;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.movieInfo {
+  display: flex;
+  align-items: center;
+}
+
+.movieImage {
+  width: 200px;
+  border: 1px solid gold; /* Тонкий золотий бордер */
+  margin-right: 20px;
+}
+
+.details {
+  flex: 1;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.releaseDate,
+.voteAverage,
+.overview,
+.genres {
+  margin-bottom: 10px;
+}
+
+.links {
+  margin-top: 20px;
+}
+
+.link {
+  color: gold;
+  text-decoration: none;
+  margin-right: 10px;
+}
